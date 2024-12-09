@@ -1,5 +1,7 @@
 import { test, expect } from "@playwright/test";
-require("dotenv").config();
+import dotenv from "dotenv";
+
+dotenv.config();
 
 test.describe("Login Page", () => {
   const testEmail = process.env.TEST_USER_EMAIL;
@@ -24,12 +26,8 @@ test.describe("Login Page", () => {
     const submitButton = page.locator('button[type="submit"]');
     await submitButton.click();
 
-    // Wait for the logout button to appear
     const logoutButton = page.locator("#logoutButton");
     await expect(logoutButton).toBeVisible({ timeout: 15000 });
-
-    // Debugging: Check if the username is stored
-    console.log(await page.evaluate(() => localStorage.getItem("user")));
   });
 
   test("User sees an error message with invalid credentials", async ({
