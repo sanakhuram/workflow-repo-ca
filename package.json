@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "vite",
+    "format": "prettier --write .",
     "dev": "npx tailwindcss -i ./css/input.css -o ./css/style.css --watch",
     "prepare": "husky install",
     "test": "vitest",

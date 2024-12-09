@@ -1,5 +1,5 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
+import globals from 'globals';
+import pluginJs from '@eslint/js';
 
 /** @type {import('eslint').Linter.Config} */
 export default {
@@ -13,8 +13,10 @@ export default {
       test: true,
     },
   },
- 
+  env: {
+    node: true,
+  },
   rules: {
-    "no-unused-vars": ["error", { args: "all" }],
+    'no-unused-vars': ['error', { args: 'all' }],
   },
 };
