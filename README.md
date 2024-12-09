@@ -132,6 +132,4 @@ This project is part of the **FED2-24 Workflow Course Assignment**. The goal of 
 3. Request a review from peers and incorporate feedback.
 4. Submit the PR link on Moodle.
 
----
 
-Feel free to use this updated `README.md`. Let me know if you need any further assistance!
