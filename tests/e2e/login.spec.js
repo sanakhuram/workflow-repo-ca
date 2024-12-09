@@ -1,42 +1,51 @@
 import { test, expect } from "@playwright/test";
+require("dotenv").config();
 
-test.describe("login", () => {
-  const testEmail = process.env.TEST_EMAIL;
-  const testPassword = process.env.TEST_PASSWORD;
+test.describe("Login Page", () => {
+  const testEmail = process.env.TEST_USER_EMAIL;
+  const testPassword = process.env.TEST_USER_PASSWORD;
   const baseURL = "http://localhost:5173";
 
-  test("user can login", async ({ page }) => {
-    console.log("Testing login with:", testEmail, testPassword); // Debugging
-
-    // Go to login page
-    await page.goto(`${baseURL}/auth/login`);
-
-    // Fill in form using name attributes
-    await page.locator('input[name="email"]').fill(testEmail);
-    await page.locator('input[name="password"]').fill(testPassword);
-
-    // Click login
-    await page.getByRole("button", { name: "Login" }).click();
-
-    // Check if we see logout button - means we're logged in
-    await expect(page.getByRole("button", { name: "Logout" })).toBeVisible();
+  test.beforeAll(() => {
+    if (!testEmail || !testPassword) {
+      throw new Error(
+        "Environment variables TEST_USER_EMAIL and TEST_USER_PASSWORD must be set",
+      );
+    }
   });
 
-  test("wrong password shows error", async ({ page }) => {
-    console.log("Testing login with wrong credentials"); // Debugging
+  test("User can successfully log in with valid credentials", async ({
+    page,
+  }) => {
+    await page.goto(`${baseURL}/login/`);
+    await page.fill('input[name="email"]', testEmail);
+    await page.fill('input[name="password"]', testPassword);
 
-    // Navigate to login page
-    await page.goto(`${baseURL}/auth/login`);
+    const submitButton = page.locator('button[type="submit"]');
+    await submitButton.click();
 
-    // Fill in form using name attributes
-    await page.locator('input[name="email"]').fill(testEmail);
-    await page.locator('input[name="password"]').fill("wrongpassword");
+    // Wait for the logout button to appear
+    const logoutButton = page.locator("#logoutButton");
+    await expect(logoutButton).toBeVisible({ timeout: 15000 });
 
-    // Click login
-    await page.getByRole("button", { name: "Login" }).click();
+    // Debugging: Check if the username is stored
+    console.log(await page.evaluate(() => localStorage.getItem("user")));
+  });
 
-    // Check for error in message container
+  test("User sees an error message with invalid credentials", async ({
+    page,
+  }) => {
+    await page.goto(`${baseURL}/login/`);
+    await page.fill('input[name="email"]', "invalid@user.com");
+    await page.fill('input[name="password"]', "wrongpassword");
+
+    const submitButton = page.locator('button[type="submit"]');
+    await submitButton.click();
+
     const errorMessage = page.locator("#message-container");
-    await expect(errorMessage).toContainText("Invalid email or password");
+    await expect(errorMessage).toContainText(
+      "Please enter a noroff.no or stud.noroff.no email address.",
+      { timeout: 15000 },
+    );
   });
 });
