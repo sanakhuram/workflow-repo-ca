@@ -13,6 +13,9 @@ export default {
       test: true,
     },
   },
+  env: {
+    node: true,
+  },
   rules: {
     "no-unused-vars": ["error", { args: "all" }],
   },
