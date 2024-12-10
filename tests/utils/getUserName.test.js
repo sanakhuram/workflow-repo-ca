@@ -1,37 +1,32 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { expect, describe, it, beforeEach } from 'vitest';
+
+const storageMock = {};
+global.localStorage = {
+  getItem: (key) => storageMock[key] || null,
+  setItem: (key, value) => {
+    storageMock[key] = value;
+  },
+  clear: () => {
+    Object.keys(storageMock).forEach((key) => delete storageMock[key]);
+  },
+};
+
+const fetchUsername = () => {
+  const userData = JSON.parse(localStorage.getItem('user'));
+  return userData?.name || null;
+};
 
 describe('fetchUsername', () => {
-  let mockStorage;
-
   beforeEach(() => {
-    mockStorage = {
-      getItem: vi.fn(), // Mock function
-    };
+    localStorage.clear();
   });
 
-  it('retrieves the username from the profile object in session storage', () => {
-    mockStorage.getItem.mockReturnValue(JSON.stringify({ username: 'Alex' }));
-
-    const fetchUsername = (storage) => {
-      const userData = JSON.parse(storage.getItem('profile'));
-      return userData ? userData.username : null;
-    };
-
-    const username = fetchUsername(mockStorage);
-    expect(username).toBe('Alex');
-    expect(mockStorage.getItem).toHaveBeenCalledWith('profile');
+  it('returns the username when a user object is stored', () => {
+    localStorage.setItem('user', JSON.stringify({ name: 'John' }));
+    expect(fetchUsername()).toBe('John');
   });
 
-  it('returns null when no profile exists in session storage', () => {
-    mockStorage.getItem.mockReturnValue(null);
-
-    const fetchUsername = (storage) => {
-      const userData = JSON.parse(storage.getItem('profile'));
-      return userData ? userData.username : null;
-    };
-
-    const username = fetchUsername(mockStorage);
-    expect(username).toBeNull();
-    expect(mockStorage.getItem).toHaveBeenCalledWith('profile');
+  it('returns null when no user data exists in storage', () => {
+    expect(fetchUsername()).toBeNull();
   });
 });

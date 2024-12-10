@@ -7,7 +7,7 @@ export function logoutButtonListener() {
   if (logoutButton) {
     logoutButton.addEventListener('click', () => {
       clearStorage();
-      window.location.href = '/login';
+      window.location.href = '/login/';
     });
   }
 }
