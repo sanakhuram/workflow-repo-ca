@@ -131,5 +131,3 @@ This project is part of the **FED2-24 Workflow Course Assignment**. The goal of 
 2. Do **not merge** the PR.
 3. Request a review from peers and incorporate feedback.
 4. Submit the PR link on Moodle.
-
-
