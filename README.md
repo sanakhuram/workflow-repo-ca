@@ -35,6 +35,7 @@ This project is part of the **FED2-24 Workflow Course Assignment**. The goal of 
    ```
 
 4. Run the project:
+
    ```bash
    npm start
    ```
@@ -58,32 +59,65 @@ This project is part of the **FED2-24 Workflow Course Assignment**. The goal of 
 
 ### **Unit Tests (Vitest)**
 
-#### **`isActivePath` function**
+Vitest is used for unit testing utility functions and individual components.
 
-- Returns `true` when current path matches `href` exactly.
-- Returns `true` for root path `/` when path is `/` or `/index.html`.
-- Returns `true` when current path includes the `href`.
-- Returns `false` when paths don't match.
+#### **Commands to Run Vitest Tests**
 
-#### **`getUserName` function**
+1. Run all tests:
 
-- Returns the name from the user object in storage.
-- Returns `null` when no user exists in storage.
+   ```bash
+   npx vitest
+   ```
+
+2. Run a specific test file:
+
+   ```bash
+   npx vitest tests/unit/<test-file-name>.test.js
+   ```
+
+3. Run tests in watch mode:
+
+   ```bash
+   npx vitest --watch
+   ```
+
+4. Generate a test coverage report:
+
+   ```bash
+   npx vitest --coverage
+   ```
 
 ---
 
 ### **End-to-End Tests (Playwright)**
 
-#### **`login`**
+Playwright is used for testing the application's UI and simulating user interactions.
 
-- User can log in successfully with valid credentials.
-- Displays error message for invalid credentials.
+#### **Commands to Run Playwright Tests**
 
-#### **`navigation`**
+1. Run all E2E tests:
 
-- Navigates to the home page.
-- Waits for the venue list to load.
-- Clicks the first venue and verifies that the venue details page contains “Venue details” in the heading.
+   ```bash
+   npx playwright test
+   ```
+
+2. Run a specific test file:
+
+   ```bash
+   npx playwright test tests/e2e/<test-file-name>.spec.js
+   ```
+
+3. Run tests in debug mode:
+
+   ```bash
+   npx playwright test --debug
+   ```
+
+4. Generate a test report:
+
+   ```bash
+   npx playwright show-report
+   ```
 
 ---
 
@@ -98,7 +132,13 @@ This project is part of the **FED2-24 Workflow Course Assignment**. The goal of 
 ### Instructions:
 
 1. Ensure `.env` is in `.gitignore`.
-2. Add an `.env.example` file with placeholders for the environment variables.
+2. Add an `.env.example` file with placeholders for the environment variables:
+
+   ```plaintext
+   API_URL=http://example.com/api
+   LOGIN_USERNAME=<username>
+   LOGIN_PASSWORD=<password>
+   ```
 
 ---
 
@@ -122,5 +162,3 @@ This project is part of the **FED2-24 Workflow Course Assignment**. The goal of 
 - ✅ Updated **README** with installation instructions, scripts, and environment variable details. 📝
 - ✅ `.env` is included in `.gitignore`. 🚫
 - ✅ `.env.example` is created with placeholder variables. 📂
-
-
