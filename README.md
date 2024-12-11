@@ -125,7 +125,6 @@ Playwright is used for testing the application's UI and simulating user interact
 
 ### Required Environment Variables:
 
-- `API_URL`: URL of the API.
 - `LOGIN_USERNAME`: Username for testing login.
 - `LOGIN_PASSWORD`: Password for testing login.
 
@@ -133,12 +132,6 @@ Playwright is used for testing the application's UI and simulating user interact
 
 1. Ensure `.env` is in `.gitignore`.
 2. Add an `.env.example` file with placeholders for the environment variables:
-
-   ```plaintext
-   API_URL=http://example.com/api
-   LOGIN_USERNAME=<username>
-   LOGIN_PASSWORD=<password>
-   ```
 
 ---
 
