@@ -106,28 +106,21 @@ This project is part of the **FED2-24 Workflow Course Assignment**. The goal of 
 
 ### Development Tools
 
-- [ ] **ESLint** is installed and configured to handle test globals. 🛠️
-- [ ] **Prettier** is installed and configured. ✨
-- [ ] Pre-commit hooks are set up to handle linting and formatting. 🔧
+- ✅ **ESLint** is installed and configured to handle test globals. 🛠️
+- ✅ **Prettier** is installed and configured. ✨
+- ✅ Pre-commit hooks are set up to handle linting and formatting. 🔧
 
 ### Testing Tools
 
-- [ ] **Vitest** is installed and configured. 🧪
-- [ ] Unit tests are written and passing. ✔️
-- [ ] **Playwright** is installed and configured. 🎭
-- [ ] E2E tests are written and passing. ✅
+- ✅ **Vitest** is installed and configured. 🧪
+- ✅ Unit tests are written and passing. ✔️
+- ✅ **Playwright** is installed and configured. 🎭
+- ✅ E2E tests are written and passing. ✅
 
 ### Project Documentation
 
-- [ ] Updated **README** with installation instructions, scripts, and environment variable details. 📝
-- [ ] `.env` is included in `.gitignore`. 🚫
-- [ ] `.env.example` is created with placeholder variables. 📂
+- ✅ Updated **README** with installation instructions, scripts, and environment variable details. 📝
+- ✅ `.env` is included in `.gitignore`. 🚫
+- ✅ `.env.example` is created with placeholder variables. 📂
 
----
 
-## 📤 Submission
-
-1. Open a **Pull Request (PR)** from the `workflow` branch into your default branch.
-2. Do **not merge** the PR.
-3. Request a review from peers and incorporate feedback.
-4. Submit the PR link on Moodle.
