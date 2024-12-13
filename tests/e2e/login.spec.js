@@ -1,27 +1,12 @@
 import { test, expect } from "@playwright/test";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 test.describe("Login Page", () => {
-  const testEmail = process.env.TEST_USER_EMAIL;
-  const testPassword = process.env.TEST_USER_PASSWORD;
-  const baseURL = "http://localhost:5173";
-
-  test.beforeAll(() => {
-    if (!testEmail || !testPassword) {
-      throw new Error(
-        "Environment variables TEST_USER_EMAIL and TEST_USER_PASSWORD must be set",
-      );
-    }
-  });
-
   test("User can successfully log in with valid credentials", async ({
     page,
   }) => {
-    await page.goto(`${baseURL}/login/`);
-    await page.fill('input[name="email"]', testEmail);
-    await page.fill('input[name="password"]', testPassword);
+    await page.goto("/login/");
+    await page.fill('input[name="email"]', process.env.TEST_USER_EMAIL);
+    await page.fill('input[name="password"]', process.env.TEST_USER_PASSWORD);
 
     const submitButton = page.locator('button[type="submit"]');
     await submitButton.click();
@@ -33,7 +18,7 @@ test.describe("Login Page", () => {
   test("User sees an error message with invalid credentials", async ({
     page,
   }) => {
-    await page.goto(`${baseURL}/login/`);
+    await page.goto("/login/");
     await page.fill('input[name="email"]', "invalid@user.com");
     await page.fill('input[name="password"]', "wrongpassword");
 
